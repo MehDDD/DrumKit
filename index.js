@@ -5,7 +5,7 @@ for (i = 0; i < buttonArray.length; i++) {
   document.querySelectorAll(".drum")[i].onclick = function handleClick() {
     var buttonInnerHtml = this.innerHTML;
     makesound(buttonInnerHtml);
-
+    buttonAnimation(buttonInnerHtml);
   }
 }
 
@@ -21,6 +21,7 @@ for (i = 0; i < buttonArray.length; i++) {
 // mikonim va un callback ro seda mikone
 document.addEventListener('keydown', (event) => {
   makesound(event.key);
+  buttonAnimation(event.key);
 
 });
 
@@ -70,7 +71,14 @@ function makesound(key) {
 
 }
 
-
+// add animation to the buttons:
+function buttonAnimation(currentkey) {
+  var activeButton = document.querySelector("." + currentkey);
+  activeButton.classList.add("pressed");
+  setTimeout(function() {
+    activeButton.classList.remove("pressed");
+  }, 100);
+}
 
 
 // to perform a function when a key is pressed.
